@@ -6,9 +6,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloComponent {
 	
-	@Scheduled(fixedRate = 1000)
-	public void printHello() {
-		System.out.println("Hello world!");
-	}
+//	@Scheduled(fixedRate = 1000)
+//	public void printHello() {
+//		System.out.println("Hello world!");
+//	}
 
 }

@@ -6,11 +6,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class HomeController {
+public class HomeRestController {
 	
 	@GetMapping("/home")
 	public String sayHello() {
 		return "Hello world";
+	}
+	
+	@GetMapping("/hello")
+	public String saluta() {
+		return "Hello world 2";
 	}
 
 }
