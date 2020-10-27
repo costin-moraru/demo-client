@@ -3,9 +3,6 @@ info:
   title: Gestione Utenti
   version: v1
   description: Servizio per la gestione degli utenti
-servers:
-  - url: 'http://localhost:8081/api'
-    variables: {}
 paths:
   /users:
     summary: Gestione utenti
@@ -15,12 +12,36 @@ paths:
       description: ''
       operationId: findAll
       responses:
-        default:
-          description: Default error sample response
+        '200':
+          description: Array of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
     post:
       summary: Aggiungi utenti
       description: ''
       operationId: save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
-        default:
-          description: Default error sample response
+        '200':
+          description: A single user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string

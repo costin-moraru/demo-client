@@ -1,2 +1,3 @@
 src/main/java/com/demo/client/swagger/api/ApiUtil.java
 src/main/java/com/demo/client/swagger/api/UsersApi.java
+src/main/java/com/demo/client/swagger/model/User.java

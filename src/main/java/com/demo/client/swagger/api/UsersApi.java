@@ -5,6 +5,7 @@
  */
 package com.demo.client.swagger.api;
 
+import com.demo.client.swagger.model.User;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +20,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-27T13:40:17.466+01:00[Europe/Rome]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-27T13:55:24.073+01:00[Europe/Rome]")
 @Validated
 @Api(value = "users", description = "the users API")
 public interface UsersApi {
@@ -31,20 +32,30 @@ public interface UsersApi {
     /**
      * GET /users : Restituisce tutti gli utenti
      *
-     * @return Default error sample response (status code 200)
+     * @return Array of users. (status code 200)
      */
-    @ApiOperation(value = "Restituisce tutti gli utenti", nickname = "findAll", notes = "", tags={  })
+    @ApiOperation(value = "Restituisce tutti gli utenti", nickname = "findAll", notes = "", response = User.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Default error sample response") })
+        @ApiResponse(code = 200, message = "Array of users.", response = User.class, responseContainer = "List") })
     @GetMapping(
-        value = "/users"
+        value = "/users",
+        produces = { "application/json" }
     )
-    default ResponseEntity<Void> _findAll() {
+    default ResponseEntity<List<User>> _findAll() {
         return findAll();
     }
 
     // Override this method
-    default  ResponseEntity<Void> findAll() {
+    default  ResponseEntity<List<User>> findAll() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"name\" : \"name\", \"id\" : 0 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -53,20 +64,32 @@ public interface UsersApi {
     /**
      * POST /users : Aggiungi utenti
      *
-     * @return Default error sample response (status code 200)
+     * @param user  (optional)
+     * @return A single user. (status code 200)
      */
-    @ApiOperation(value = "Aggiungi utenti", nickname = "save", notes = "", tags={  })
+    @ApiOperation(value = "Aggiungi utenti", nickname = "save", notes = "", response = User.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Default error sample response") })
+        @ApiResponse(code = 200, message = "A single user.", response = User.class) })
     @PostMapping(
-        value = "/users"
+        value = "/users",
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
-    default ResponseEntity<Void> _save() {
-        return save();
+    default ResponseEntity<User> _save(@ApiParam(value = ""  )  @Valid @RequestBody(required = false) User user) {
+        return save(user);
     }
 
     // Override this method
-    default  ResponseEntity<Void> save() {
+    default  ResponseEntity<User> save(User user) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"name\" : \"name\", \"id\" : 0 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
