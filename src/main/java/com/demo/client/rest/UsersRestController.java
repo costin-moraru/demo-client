@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
-public class HomeRestController {
+@RequestMapping("/api/users")
+public class UsersRestController {
 	
-	@GetMapping("/home")
-	public String sayHello() {
+	@GetMapping("/")
+	public String findAll() {
 		return "Hello world";
 	}
 	
-	@GetMapping("/hello")
-	public String saluta() {
-		return "Hello world 2";
+	@GetMapping("/{userId}")
+	public String findUserById() {
+		return "Hello world";
 	}
 
 }

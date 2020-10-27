@@ -1,0 +1,26 @@
+openapi: 3.0.1
+info:
+  title: Gestione Utenti
+  version: v1
+  description: Servizio per la gestione degli utenti
+servers:
+  - url: 'http://localhost:8081/api'
+    variables: {}
+paths:
+  /users:
+    summary: Gestione utenti
+    description: Api per la gestione degli utenti
+    get:
+      summary: Restituisce tutti gli utenti
+      description: ''
+      operationId: findAll
+      responses:
+        default:
+          description: Default error sample response
+    post:
+      summary: Aggiungi utenti
+      description: ''
+      operationId: save
+      responses:
+        default:
+          description: Default error sample response
